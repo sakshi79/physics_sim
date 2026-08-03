@@ -9,7 +9,6 @@ import sys
 import argparse
 
 pygame.init()
-
 info = pygame.display.Info()
 canvas_width  = info.current_w - 20    
 canvas_height = info.current_h - 100    
@@ -18,7 +17,7 @@ canvas_height = info.current_h - 100
 canvas = pygame.display.set_mode((canvas_width, canvas_height))
 pygame.display.set_caption("Billiard")
 font = pygame.font.SysFont("monospace", 16)
-sim_min_width = 2.0   # Amount of simlation zoomin on pixels
+sim_min_width = 2.0   # Amount of simulation zoom-in on frame pixels
 c_scale = min(canvas_width, canvas_height) / sim_min_width
 sim_width = canvas_width / c_scale
 sim_height = canvas_height / c_scale
@@ -68,30 +67,31 @@ def draw():
 
 def ball_collision(ball1, ball2, res_coeff):
     del_pos = ball2.pos - ball1.pos
-
+    # Balls can overlap if they move fast enough before the frame detects collision. Happens in our discrete time approach.
+    # More advanced simulators implement continuous collision detection (CCD) or time of impact (TOI); computationally expensive 
     d = np.linalg.norm(del_pos)
     if(d==0.0 or d > (ball1.radius + ball2.radius)):
         return
-
     unit_norm = del_pos * 1.0/d
-    
-    corr = (ball1.radius + ball2.radius - d) / 2.0
 
+    # Move each ball back by half the overlap so that they touch again
+    corr = (ball1.radius + ball2.radius - d) / 2.0 
     ball1.pos += unit_norm * (-corr)
     ball2.pos += unit_norm * (corr)
 
+    # Take projections of velocity along the axis of collision
     v1 = np.dot(ball1.vel, unit_norm)
     v2 = np.dot(ball2.vel, unit_norm)
 
     m1 = ball1.mass
     m2 = ball2.mass
 
+    # Only velocity component along the axis of collison is changed by collision, the perpendicular component is unaffected.
     new_v1 = (m1*v1 + m2*v2 - m2*(v1-v2)*res_coeff) / (m1+m2)
     new_v2 = (m1*v1 + m2*v2 - m1*(v2-v1)*res_coeff) / (m1+m2)
 
     ball1.vel += unit_norm * (new_v1 - v1)
     ball2.vel += unit_norm * (new_v2 - v2)
-
 
 
 def wall_collision(ball, world_size):
