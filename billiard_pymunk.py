@@ -70,9 +70,9 @@ def set_restitution(e):
     res_coeff = round(min(1.0, max(0.0, e)), 1)
 
 def main():
-    balls = setup_scene()
     add_walls()
-    show_debug = True
+    balls = setup_scene()
+    show_debug = False
 
     while True:
         for _ in range(SUBSTEPS):
@@ -87,7 +87,7 @@ def main():
                 p = ball.body.position
                 pygame.draw.circle(canvas, (255,0,0), (round(p.x*C_SCALE), round(canvas_height-p.y*C_SCALE)), round(C_SCALE*ball.radius))
 
-        hud = f"restitution {res_coeff:.1f} ↑/↓   R: reset"
+        hud = f"restitution {res_coeff:.1f} ↑/↓    R: reset    D: debug mode"
         canvas.blit(font.render(hud, True, (40,40,40)), (10,10))
 
         pygame.display.flip()         # Display the updated frame
