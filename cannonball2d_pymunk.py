@@ -2,13 +2,10 @@
 # Python version of Matthias Müller - Ten Minute Physics
 
 import sys
-
 import pymunk
 import pygame
 from pymunk import pygame_util
 from pymunk import Vec2d
-import random
-import math
 
 
 pygame.init()
@@ -51,8 +48,7 @@ def add_walls(thickness=0.001):
     
 ####### Initialize Pymunk's physics space #########
 space = pymunk.Space()
-space.gravity = (0, -10.0)  # gravity: 10 m/s^2
-space.on_collision(pre_solve=pre_solve)        
+space.gravity = (0, -10.0)  # gravity: 10 m/s^2       
 space.collision_slop = 0.001     # allowed overlap b/w shapes (penetration distance)
 # Pymunk doesn't use a CCD, but discrete timestep correction, allowing small overlap to avoid sudden impulse
 
