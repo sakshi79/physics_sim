@@ -27,7 +27,7 @@ C_SCALE = min(canvas_width, canvas_height) / SIM_MIN_WIDTH
 SIM_WIDTH = canvas_width/C_SCALE
 SIM_HEIGHT = canvas_height/C_SCALE
 res_coeff = 1.0
-draw_options.transform = pymunk.Transform.scaling(C_SCALE)
+draw_options.transform = pymunk.Transform(a=C_SCALE, b=0, c=0, d=-C_SCALE, tx=0, ty=canvas_height)
 
 def add_walls(thickness=0.001):
     corners = [(0,0), (SIM_WIDTH,0), (SIM_WIDTH, SIM_HEIGHT), (0, SIM_HEIGHT)]
