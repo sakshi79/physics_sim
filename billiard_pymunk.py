@@ -76,8 +76,9 @@ def main():
     add_walls()
     balls = setup_scene()
     show_debug = False
+    running = True
 
-    while True:
+    while running:
         for _ in range(SUBSTEPS):
             space.step((1/DT) / SUBSTEPS)
 
@@ -98,10 +99,10 @@ def main():
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                return
+                running = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    return     # terminate on ESC
+                    running = False     # terminate on ESC
                 elif event.key == pygame.K_d:
                     # Toggle b/w Pymunk's debug draw mode and pygame's draw
                     show_debug = not show_debug
@@ -113,6 +114,7 @@ def main():
                     set_restitution(res_coeff - 0.1)
 
     print("done!")
+    pygame.quit()
 
 if __name__ == "__main__":
     sys.exit(main())
