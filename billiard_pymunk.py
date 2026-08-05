@@ -1,3 +1,6 @@
+# Copyright - Sakshi Bhatia, 2026
+# Python version of Matthias Müller - Ten Minute Physics
+
 import pygame
 import pymunk
 from pymunk import pygame_util
