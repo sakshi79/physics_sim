@@ -26,7 +26,7 @@ C_SCALE = min(canvas_width, canvas_height) / SIM_MIN_WIDTH   # pixels per meter
 SIM_WIDTH = canvas_width / C_SCALE
 SIM_HEIGHT = canvas_height / C_SCALE
 
-DT = 50.0                    # frames (and physics steps) per second
+DT = 60.0                    # frames (and physics steps) per second
 SUBSTEPS = 4
 
 # Physics is in meters, the screen is in pixels: scale at draw time only. 
@@ -34,19 +34,19 @@ SUBSTEPS = 4
 draw_options.transform = pymunk.Transform(a=C_SCALE, b=0, c=0, d=-C_SCALE, tx=0, ty=canvas_height)
 
 def add_walls(thickness=0.001):
-    corners = [(0,0), (SIM_WIDTH,0), (SIM_WIDTH, SIM_HEIGHT), (0, SIM_HEIGHT)]
+    edges = [
+        ((0, 0),        (SIM_WIDTH, 0)),           # floor
+        ((0, 0),        (0, SIM_HEIGHT)),          # left
+        ((SIM_WIDTH, 0),(SIM_WIDTH, SIM_HEIGHT)),  # right
+    ]    
     walls = []
-    for a,b in zip(corners, corners[1:]+corners[:1]):
+    for a,b in edges:
         seg = pymunk.Segment(space.static_body, a, b, thickness)
         seg.friction = 0.0
         seg.elasticity = 1.0
         walls.append(seg)
     space.add(*walls)
     return walls
-
-def pre_solve(arbiter, space, data):
-    arbiter.restitution = 1.0
-    arbiter.friction = 0.1
 
     
 ####### Initialize Pymunk's physics space #########
