@@ -81,8 +81,7 @@ def main():
         # Draw pymunk screen
         canvas.fill((255,255,255))
         if show_debug: 
-            space.debug_draw(draw_options) # Draw physics objects on screen, replace with pygame.draw later for more options to control appearance
-        else:
+            space.debug_draw(draw_options) 
             for ball in balls:
                 p = ball.body.position
                 pygame.draw.circle(canvas, (255,0,0), (round(p.x*C_SCALE), round(canvas_height-p.y*C_SCALE)), round(C_SCALE*ball.radius))
@@ -100,7 +99,7 @@ def main():
                 if event.key == pygame.K_ESCAPE:
                     return     # terminate on ESC
                 elif event.key == pygame.K_d:
-                    # Toggle b/w Pymunk's debug mode and pygame's 
+                    # Toggle b/w Pymunk's debug draw mode and pygame's draw
                     show_debug = not show_debug
                 elif event.key == pygame.K_r:
                     balls = setup_scene()   # reset scene on 'R' key
