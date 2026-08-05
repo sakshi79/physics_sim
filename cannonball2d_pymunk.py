@@ -75,8 +75,9 @@ def main():
     add_walls()
     ball = setup_scene()
     show_debug = False
+    running = True
 
-    while True:
+    while running:
         for _ in range(SUBSTEPS):
             # step simulation (in substeps for stability)
             space.step((1/DT)/SUBSTEPS)
@@ -98,10 +99,10 @@ def main():
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:  # exit cleanly when pygame window's close button is pressed.
-                return
+                running = False
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    return     # terminate on ESC
+                    running = False    # terminate on ESC
                 elif event.key == pygame.K_d:
                     # Toggle b/w Pymunk's debug draw mode and pygame's draw
                     show_debug = not show_debug
