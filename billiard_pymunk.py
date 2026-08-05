@@ -81,10 +81,11 @@ def main():
         for _ in range(SUBSTEPS):
             space.step((1/DT) / SUBSTEPS)
 
-        # Draw pymunk screen
+        # Draw pygame screen
         canvas.fill((255,255,255))
         if show_debug: 
             space.debug_draw(draw_options) 
+        else:
             for ball in balls:
                 p = ball.body.position
                 pygame.draw.circle(canvas, (255,0,0), (round(p.x*C_SCALE), round(canvas_height-p.y*C_SCALE)), round(C_SCALE*ball.radius))
