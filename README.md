@@ -7,7 +7,17 @@ For all simulations present in this repo, we have the following keyboard control
 - 'R' to reset the simulation.
 - 'D' to enter Physics debug mode (for Pymunk versions only)
 
-## It contains the following simulations: 
+## It contains the following simulations:  
+
 ### 1. Cannonball
 To run the cannonball simulation: "python cannonball2d.py" or "python cannonball2d_pymunk.py".  
-![De](cannonball.gif)
+
+Demo: 
+![Demo](cannonball.gif)  
+
+### 2. Billiard
+To run the cannonball simulation: "python billiard.py" or "python billiard_pymunk.py".  
+Use the keyboard ↑/↓ arrows to change coeffecient of restitution between the balls.
+
+Demo: 
+![Demo](billiard.gif)  
