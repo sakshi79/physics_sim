@@ -1,4 +1,4 @@
-This repo contains the Python implementations of various 10 minute physics simulations.
+This repo contains the Python implementations of various 10 minute physics simulations.  
 There are two versions of each simulation:
 - A Python version that implements physics from scratch using numpy and using Pygame for visualizations.
 - A second Python implementation that leverages Pymunk's Physics engine.
@@ -9,5 +9,5 @@ For all simulations present in this repo, we have the following keyboard control
 
 ## It contains the following simulations: 
 ### 1. Cannonball
-To run the cannonball simulation: "python cannonball2d.py" or "python cannonball2d_pymunk.py"
+To run the cannonball simulation: "python cannonball2d.py" or "python cannonball2d_pymunk.py"  <br>
 Demo: ![Demo](cannonball.gif)
