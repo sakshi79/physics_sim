@@ -9,5 +9,5 @@ For all simulations present in this repo, we have the following keyboard control
 
 ## It contains the following simulations: 
 ### 1. Cannonball
-To run the cannonball simulation: "python cannonball2d.py" or "python cannonball2d_pymunk.py"  <br>
-Demo: ![Demo](cannonball.gif)
+To run the cannonball simulation: "python cannonball2d.py" or "python cannonball2d_pymunk.py".  
+![De](cannonball.gif)
