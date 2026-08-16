@@ -1,0 +1,4 @@
+pip
+- pymunk==7.3.0
+- pygame==2.6.1
+- numpy==2.2.6
